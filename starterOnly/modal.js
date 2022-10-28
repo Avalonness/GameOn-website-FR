@@ -64,6 +64,11 @@ check.addEventListener("change", () => {
 //Soumet le formulaire si conditions validés.
 submitBtn.addEventListener('click', cguChecked)
 
+//Regex Email
+const regExEmail = (value) => {
+  return /^([A-Za-z\d\.-]+)@([a-z\d-]+).([a-z]{2,8})(\.[a-z]{2,8})?$/.test(value);
+};
+
 // Vérifie à l'envoie si les CGU sont valides.
 function cguChecked() {
 
@@ -103,7 +108,7 @@ function cguChecked() {
   }
 
   //vérifie la validité du mail
-  if (mail.value.length < 5) {
+  if (!regExEmail(mail.value)) {
     mailError.innerHTML = "L'email est obligatoire et sous un format *****@*****.** "
     mailError.style.color = "firebrick"
     mailError.style.fontSize = "10px"
